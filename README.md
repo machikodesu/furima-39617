@@ -6,7 +6,6 @@
 |email             |string|null: false, unique: true|
 |password          |string|null: false|
 |encrypted_password|string|null: false|
-|encrypted_password|string|null: false|
 |first_name        |string|null: false|
 |last_name         |string|null: false|
 |first_name_k      |string|null: false|
@@ -17,13 +16,13 @@
 ### Association
 
 has_many :items
-has_many :order
+has_many :orders
 
 ## Items
 |Column|Type|Options|
-|name           |integer   |null: false|
-|description    |integer   |null: false|
-|user           |references|null: false, foreign_key: true|
+|name           |string    |null: false|
+|description    |text      |null: false|
+|users          |references|null: false, foreign_key: true|
 |price          |integer   |null: false|
 |category_id    |integer   |null: false|
 |condition_id   |integer   |null: false|
@@ -33,27 +32,27 @@ has_many :order
 
 ### Association
 
-belongs_to :user
+belongs_to :users
 belongs_to :category_id
 belongs_to :condition_id
 belongs_to :delivery_fee_id
 belongs_to :prefecture_id
 belongs_to :delivery_day_id
-has_one :order
+has_one :orders
 
 ## Orders
 |Column|Type|Options|
-|user|references|null: false, foreign_key: true|
-|item|references|null: false, foreign_key: true|
+|users|references|null: false, foreign_key: true|
+|items|references|null: false, foreign_key: true|
 
 
 ### Association
 
-belongs_to :user
-belongs_to :item
-has_one :address
+belongs_to :users
+belongs_to :items
+has_one :addresses
 
-## Address
+## Addresses
 |Column|Type|Options|
 |postal_cord   |string    |null: false|
 |prefecture_id |integer   |null: false|
@@ -61,8 +60,8 @@ has_one :address
 |street_address|string    |null: false|
 |building_name |string    |-----------|
 |phone_number  |string    |null: false|
-|buy_status    |references|null: false, foreign_key: true|
+|orders        |references|null: false, foreign_key: true|
 
 ### Association
 
-belongs_to :order
+belongs_to :orders
