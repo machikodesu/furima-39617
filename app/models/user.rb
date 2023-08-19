@@ -11,6 +11,7 @@ class User < ApplicationRecord
    validates :nickname, presence: true
    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'must contain at least one letter and one digit' }
 
-
+   has_many :items
+   has_many :orders
 
 end
