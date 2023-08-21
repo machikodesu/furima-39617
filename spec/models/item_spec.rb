@@ -29,30 +29,30 @@ RSpec.describe Item, type: :model do
       it 'category_idがない場合は登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 0")
+        expect(@item.errors.full_messages).to include('Category must be other than 0')
       end
 
       it 'delivery_fee_idがない場合は登録できない' do
         @item.delivery_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee must be other than 0")
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 0')
       end
 
       it 'prefecture_idがない場合は登録できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
 
       it 'delivery_day_idがない場合は登録できない' do
         @item.delivery_day_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery day must be other than 0")
+        expect(@item.errors.full_messages).to include('Delivery day must be other than 0')
       end
       it 'condition_idがない場合は登録できない' do
         @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition must be other than 0")
+        expect(@item.errors.full_messages).to include('Condition must be other than 0')
       end
 
       it 'priceがない場合は登録できない' do
@@ -78,7 +78,7 @@ RSpec.describe Item, type: :model do
       it '価格に全角文字を含む場合は登録できない' do
         @item.price = '5２２'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'userが紐づいていなければ登録できない' do
         @item.user = nil
