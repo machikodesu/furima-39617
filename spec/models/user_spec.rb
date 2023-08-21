@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   before do
     @user = FactoryBot.build(:user)
   end
@@ -81,49 +80,49 @@ RSpec.describe User, type: :model do
       it 'お名前(全角)は、名字が空では登録できない' do
         @user.last_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name can't be blank", "Last name is invalid")
+        expect(@user.errors.full_messages).to include("Last name can't be blank", 'Last name is invalid')
       end
 
       it 'お名前(全角)は、名前が空では登録できない' do
         @user.first_name = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", "First name is invalid")
+        expect(@user.errors.full_messages).to include("First name can't be blank", 'First name is invalid')
       end
 
       it 'お名前(全角)は、名字を全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
         @user.last_name = 'ﾔﾏﾀﾞ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name is invalid")
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
 
       it 'お名前(全角)は、名前を全角（漢字・ひらがな・カタカナ）で入力しないと登録できない' do
         @user.first_name = 'ﾀﾛｳ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
 
       it 'お名前カナ(全角)は、名字が空では登録できない' do
         @user.last_name_k = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name k can't be blank", "Last name k is invalid")
+        expect(@user.errors.full_messages).to include("Last name k can't be blank", 'Last name k is invalid')
       end
 
       it 'お名前カナ(全角)は、名前が空では登録できない' do
         @user.first_name_k = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name k can't be blank", "First name k is invalid")
+        expect(@user.errors.full_messages).to include("First name k can't be blank", 'First name k is invalid')
       end
 
       it 'お名前カナ(全角)は、名字を全角（カタカナ）で入力しないと登録できない' do
         @user.last_name_k = 'ﾔﾏﾀﾞ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name k is invalid")
+        expect(@user.errors.full_messages).to include('Last name k is invalid')
       end
 
       it 'お名前カナ(全角)は、名前を全角（カタカナ）で入力しないと登録できない' do
         @user.first_name_k = 'ﾀﾛｳ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name k is invalid")
+        expect(@user.errors.full_messages).to include('First name k is invalid')
       end
 
       it '生年月日が空だと登録できない' do
@@ -133,7 +132,4 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
-
-
 end
