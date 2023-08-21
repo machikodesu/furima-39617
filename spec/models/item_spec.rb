@@ -49,6 +49,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day must be other than 0")
       end
+      it 'condition_idがない場合は登録できない' do
+        @item.condition_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 0")
+      end
 
       it 'priceがない場合は登録できない' do
         @item.price = ''
