@@ -8,28 +8,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-  end
-
-  def show
-    @user = @item.user
-  end
-
-  def edit
-        if user_signed_in? && current_user == @item.user
-      render :edit
-    else
-      redirect_to root_path
-    end
-  end
-
-  def update
-        if @item.update(item_params)
-      redirect_to item_path(@item)
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
+  end  
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -38,6 +17,31 @@ class ItemsController < ApplicationController
       render 'new', status: :unprocessable_entity
     end
   end
+
+  def show
+    @user = @item.user
+
+    
+  end
+
+  def edit
+        if @item.order.present? || current_user != @item.user
+      redirect_to root_path 
+    elsif current_user != @item.user
+            redirect_to root_path
+    end
+  end
+
+  def update
+       @item.update(item_params)
+    if @item.valid?
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+
 
   def destroy
    if current_user == @item.user
