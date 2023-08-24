@@ -8,7 +8,8 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-  end  
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -20,20 +21,18 @@ class ItemsController < ApplicationController
 
   def show
     @user = @item.user
-
-    
   end
 
   def edit
-        if @item.order.present? || current_user != @item.user
-      redirect_to root_path 
+    if @item.order.present? || current_user != @item.user
+      redirect_to root_path
     elsif current_user != @item.user
-            redirect_to root_path
+      redirect_to root_path
     end
   end
 
   def update
-       @item.update(item_params)
+    @item.update(item_params)
     if @item.valid?
       redirect_to item_path(@item)
     else
@@ -41,15 +40,13 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   def destroy
-   if current_user == @item.user
-   @item.destroy
-   redirect_to root_path
-   else
-   redirect_to root_path
-   end
+    if current_user == @item.user
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
