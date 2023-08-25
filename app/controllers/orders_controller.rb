@@ -16,18 +16,13 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new(order_address_params)
     if @order_address.valid?
       pay_item
-
       @order_address.save
       redirect_to root_path
     else
-      set_item
       render template: 'orders/index'
     end
   end
 
-  def new
-    @order_address = OrderAddress.new(order_address_params)
-  end
 
   private
 

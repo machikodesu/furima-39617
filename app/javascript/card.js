@@ -31,5 +31,5 @@ const pay = () => {
     });
 };
 
-console.log("ok")
+
 window.addEventListener("turbo:load", pay);

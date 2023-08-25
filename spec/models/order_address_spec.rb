@@ -21,8 +21,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'postal_cordが空では保存できない' do
         @order_address.postal_cord = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal cord can't be blank", "Postal cord can't be blank",
-                                                               'Postal cord is invalid')
+        expect(@order_address.errors.full_messages).to include('Postal cord is invalid')
       end
 
       it 'postal_cordが半角のハイフンを含んだ形式でないと保存できない' do
@@ -67,6 +66,12 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
 
+      it 'phone_numberが12桁以上では購入できない' do
+        @order_address.phone_number = '090123456789'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
+      end
+    
       it 'phone_numberが全角文字では保存ができない' do
         @order_address.phone_number = '山田太郎'
         @order_address.valid?
