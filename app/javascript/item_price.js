@@ -1,6 +1,6 @@
 const item_price = () => {
   const priceInput = document.getElementById("item-price");
-  if (!priceInput) return nil;
+  // if (!priceInput) return nil;
   priceInput.addEventListener("input", () => {
         const inputValue = priceInput.value;
         const addTaxDom = document.getElementById("add-tax-price");
