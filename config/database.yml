@@ -47,16 +47,14 @@ test:
 # the values provided in this file. Alternatively, you can specify a connection
 # URL environment variable explicitly:
 #
-production:
-  <<: *default
-  adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   <<: *default
-  database: furima_39617_production
-  username: furima_39617
-  password: <%= ENV["FURIMA_39617_DATABASE_PASSWORD"] %>
+  adapter: mysql2
+  database: furima-39617_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
